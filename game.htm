@@ -186,13 +186,15 @@ ga.gameOver=function(){
 	ga.ctx.fillText(secs+" seconds played time !!",180,50);
 };
 
-ga.playGame()=function() {
-
+ga.playGame=function() {
+	console.log("test")
+	ga.data.id=window.setInterval(ga.refreshGame, 20);
 };
 
-ga.pauseGame()=function(){
-
-}
+ga.pauseGame=function(){
+	console.log("test")
+	window.clearInterval(ga.data.id);
+};
 </script>
 <script src="lib.js"></script>
 </head>
@@ -203,8 +205,8 @@ ga.pauseGame()=function(){
 	</div>
 	<div id="game" style="display:none">
 		<canvas id="cvs" width="600" height="450"></canvas>
-		<button onclick="ga.playGame()">Play</button>
-		<button onclick="ga.pauseGame()">Pause</button>
+		<button onclick="ga.playGame();">Continue</button>
+		<button onclick="ga.pauseGame();">Pause</button>
 	</div>
 </body>
 </html>
