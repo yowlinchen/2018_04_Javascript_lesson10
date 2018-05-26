@@ -5,6 +5,7 @@
 var ga={
 	ctx:null, audio:null, lib:{}, evts:{},
 	data:{
+		rounds:0,
 		id:0,
 		circle:0,
 		plane:null, bulletSystem:null, drawables:null
@@ -84,6 +85,7 @@ ga.initMain=function(){
 	document.getElementById("game").style.display="none";
 };
 ga.initGame=function(){
+	ga.data.rounds = 0;
 	// 處理 HTML DOM
 	document.getElementById("main").style.display="none";
 	document.getElementById("game").style.display="block";
@@ -129,6 +131,7 @@ ga.initGame=function(){
 		}
 	};
 ga.refreshGame=function(){
+	ga.data.rounds++;
 	// 更新資料
 	var drawables=ga.data.drawables;
 	for(var i=0;i<drawables.length;i++){
@@ -176,7 +179,20 @@ ga.gameOver=function(){
 		40, 40);
 	// 把遊戲停下來
 	window.clearInterval(ga.data.id);
+	var secs = ga.data.rounds /50;
+	// alert("Seconds that has passed:"+ secs);
+	ga.ctx.font = "20px Arial";
+	ga.ctx.fillStyle ="white";
+	ga.ctx.fillText(secs+" seconds played time !!",180,50);
 };
+
+ga.playGame()=function() {
+
+};
+
+ga.pauseGame()=function(){
+
+}
 </script>
 <script src="lib.js"></script>
 </head>
@@ -187,6 +203,8 @@ ga.gameOver=function(){
 	</div>
 	<div id="game" style="display:none">
 		<canvas id="cvs" width="600" height="450"></canvas>
+		<button onclick="ga.playGame()">Play</button>
+		<button onclick="ga.pauseGame()">Pause</button>
 	</div>
 </body>
 </html>
